@@ -1,0 +1,86 @@
+{
+  "name": "markdown-to-notebook",
+  "displayName": "Markdown to Notebook Converter",
+  "description": "Convert markdown files to Jupyter notebooks and vice versa",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.60.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "markdown-to-notebook.convertToNotebook",
+        "title": "Convert to Notebook"
+      },
+      {
+        "command": "markdown-to-notebook.convertToMarkdown",
+        "title": "Convert to Markdown"
+      },
+      {
+        "command": "markdown-to-notebook.copyToMarkdown",
+        "title": "Copy to Markdown"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "when": "resourceExtname == '.md'",
+          "command": "markdown-to-notebook.convertToNotebook"
+        },
+        {
+          "when": "resourceExtname == '.ipynb'",
+          "command": "markdown-to-notebook.convertToMarkdown"
+        },
+        {
+          "when": "resourceExtname == '.ipynb'",
+          "command": "markdown-to-notebook.copyToMarkdown"
+        }
+      ],
+      "editor/context": [
+        {
+          "when": "resourceExtname == '.md'",
+          "command": "markdown-to-notebook.convertToNotebook"
+        },
+        {
+          "when": "resourceExtname == '.ipynb'",
+          "command": "markdown-to-notebook.convertToMarkdown"
+        },
+        {
+          "when": "resourceExtname == '.ipynb'",
+          "command": "markdown-to-notebook.copyToMarkdown"
+        }
+      ],
+      "editor/title": [
+        {
+          "when": "resourceLangId == jupyter-notebook",
+          "command": "markdown-to-notebook.copyToMarkdown",
+          "group": "navigation"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "lint": "eslint src --ext ts"
+  },
+  "devDependencies": {
+    "@types/node": "^22.5.2",
+    "@types/vscode": "^1.60.0",
+    "@typescript-eslint/eslint-plugin": "^4.31.1",
+    "@typescript-eslint/parser": "^4.31.1",
+    "eslint": "^7.32.0",
+    "typescript": "^4.4.3"
+  },
+  "dependencies": {
+    "@jupyterlab/nbformat": "^4.2.5"
+  }
+}
